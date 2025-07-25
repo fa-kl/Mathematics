@@ -20,7 +20,12 @@ public:
 
   Complex& operator=(const Complex& other) = default;
 
+  /// Get the real part of the complex number
+  /// @return Real part
   real_t real() const { return m_Real; }
+
+  /// Get the imaginary part of the complex number
+  /// @return Imaginary part
   real_t imag() const { return m_Imag; }
 
   friend real_t real(const Complex& z);
@@ -52,13 +57,6 @@ public:
   Complex& operator*=(real_t rhs);
   Complex& operator/=(real_t rhs);
 };
-
-bool operator==(const Complex& lhs, const Complex& rhs);
-bool operator!=(const Complex& lhs, const Complex& rhs);
-bool operator<(const Complex& lhs, const Complex& rhs);
-bool operator>(const Complex& lhs, const Complex& rhs);
-bool operator<=(const Complex& lhs, const Complex& rhs);
-bool operator>=(const Complex& lhs, const Complex& rhs);
 
 Complex operator+(Complex lhs, const Complex& rhs);
 Complex operator+(Complex lhs, real_t rhs);
