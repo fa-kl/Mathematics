@@ -21,10 +21,22 @@ FetchContent_MakeAvailable(googletest)
 include(GoogleTest)
 include(ClangTidy)
 
+# Clean
+add_custom_target(CleanAll
+        COMMAND ${CMAKE_COMMAND} -E rm -rf ${CMAKE_BINARY_DIR}/*
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+)
+
 # Subdirectories and libraries
 add_subdirectory(Utils)
+add_subdirectory(LinAlg)
 add_subdirectory(Test)
+
+# Main library
+add_library(Math Math.cpp)
+target_include_directories(Math PUBLIC Math.h)
+target_link_libraries(Math PUBLIC Utils LinAlg)
 
 # Main executable
 add_executable(Main Main.cpp)
-target_link_libraries(Main PRIVATE Utils)
+target_link_libraries(Main PRIVATE Math)
